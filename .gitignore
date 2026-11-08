@@ -1,0 +1,21 @@
+# 编译产物
+*.exe
+*.o
+*.d
+*.elf
+*.hex
+*.bin
+*.map
+*.axf
+*.lst
+build/
+Debug/
+Release/
+
+# 系统与编辑器垃圾
+Thumbs.db
+desktop.ini
+.DS_Store
+.vscode/
+.idea/
+*.bak
