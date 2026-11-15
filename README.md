@@ -20,6 +20,7 @@ C-language-training/
     ├── guess_number.c             d01 猜数字游戏
     ├── score_statistics.c         d02 成绩统计器
     ├── d03_pattern.c              d03 打印直角三角形
+    ├── d04_calculator.c           d04 简易计算器（switch + 边界检查）
     └── sum.c                      复习小程序：两数之和
 ```
 
@@ -48,6 +49,19 @@ C-language-training/
   - `\n` 必须放在内层循环**外面**，放里面每颗星各占一行。
   - 两个嵌套循环不能共用一个变量，内层每轮必须从初值重新开始。
   - 验证方法：改一个条件编译跑一次看输出变化，比在脑子里推快得多。
+- **d04**：
+  - 整型除零不会报错，而是**进程直接被系统终止**（PC 上无任何输出，STM32 上进 HardFault）。`if (b == 0)` 必须写在除法**之前**，顺序不可颠倒。
+  - 错误分支只 `printf` 不 `return`，末尾的输出语句照样执行 → 打印出 `result = 32759` 这种垃圾值（未初始化的栈内存，不是算出来的）。**错误路径必须提前 return**。
+  - 报错时 `return 1`、正常结束 `return 0`——返回值是给外部（脚本 / CI / 调用者）判断成败的错误码约定。
+  - `switch` 每个 `case` 结尾都要 `break`，漏了会"贯穿"执行下一个分支的代码。
+  - 输入不合法时 `scanf` 读失败，变量保留原值（垃圾值），后续逻辑全部不可信。用 `if (scanf(...) != 3)` 检查读到的项数。
+  - `7 / 2` 得 3：整数除法截断，不是 bug，是 C 的规则。
+  - 测试时在 PowerShell 里直接敲 `9/0`，是 **PowerShell 自己在算**，报的是它的错；程序输入要用 `.\test.exe` 运行后输入，或 `echo "9 / 0" | .\test.exe`。
+- **git**：
+  - `nothing added to commit` = 忘了 `git add`，commit 只提交暂存区里的东西。
+  - `fatal: pathspec 'src/README.md' did not match any files` = 路径写错，README 在仓库根目录不在 src/。先 `git status` 看真实路径。
+  - 命令别手滑：`gid`、`gti` 都会报"无法将 xxx 项识别为 cmdlet"。
+  - `git add` 成功时**没有任何输出**，安静就是成功。
 
 ## 进度
 
@@ -56,3 +70,4 @@ C-language-training/
 | 2026-11-08 | d01 猜数字游戏 | ✅ |
 | 2026-11-09 | d02 成绩统计器 | ✅ |
 | 2026-11-15 | d03 打印直角三角形（简化版）+ Day 7 复盘 | ✅ |
+| 2026-11-15 | d04 简易计算器（switch + 除零/非法运算符处理） | ✅ |
