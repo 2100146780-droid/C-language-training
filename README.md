@@ -12,12 +12,15 @@ C-language-training/
 ├── C语言每日一练-30天计划.md       训练计划总表（含进度标记）
 ├── .gitignore                     忽略编译产物（*.exe 等）
 ├── notes/                         学习注释版代码（逐行讲解）
-│   └── guess_number_annotated.c   猜数字程序的知识点全解
+│   ├── guess_number_annotated.c   猜数字程序的知识点全解
+│   └── d03_pattern_annotated.c    打印图形的知识点全解（嵌套循环核心）
 └── src/                           每日练习源码
     ├── hello.c                    环境验证：第一个 Hello World
     ├── flow_light.c               流水灯模拟（位运算热身）
     ├── guess_number.c             d01 猜数字游戏
-    └── score_statistics.c         d02 成绩统计器
+    ├── score_statistics.c         d02 成绩统计器
+    ├── d03_pattern.c              d03 打印直角三角形
+    └── sum.c                      复习小程序：两数之和
 ```
 
 ## 环境
@@ -40,6 +43,11 @@ C-language-training/
   - `Permission denied` 编译失败 = 上一个 exe 进程还在跑，先 Ctrl+C 再重编。
   - 改完源码必须重新编译，否则运行的永远是旧程序。
   - 中文乱码：源码 UTF-8、控制台 GBK，编译参数 `-fexec-charset=GBK` 根治。
+- **d03**：
+  - 内层循环条件写成 `b <= 5` 输出的是矩形不是三角形——`5` 是总行数（常量），`a` 是当前行号（变量），"每行打几颗"必须跟行号走：`b <= a`。
+  - `\n` 必须放在内层循环**外面**，放里面每颗星各占一行。
+  - 两个嵌套循环不能共用一个变量，内层每轮必须从初值重新开始。
+  - 验证方法：改一个条件编译跑一次看输出变化，比在脑子里推快得多。
 
 ## 进度
 
@@ -47,3 +55,4 @@ C-language-training/
 |---|---|---|
 | 2026-11-08 | d01 猜数字游戏 | ✅ |
 | 2026-11-09 | d02 成绩统计器 | ✅ |
+| 2026-11-15 | d03 打印直角三角形（简化版）+ Day 7 复盘 | ✅ |
