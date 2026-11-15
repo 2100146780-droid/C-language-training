@@ -17,8 +17,8 @@ C-language-training/
 └── src/                           每日练习源码
     ├── hello.c                    环境验证：第一个 Hello World
     ├── flow_light.c               流水灯模拟（位运算热身）
-    ├── guess_number.c             d01 猜数字游戏
-    ├── score_statistics.c         d02 成绩统计器
+    ├── d01_guess_number.c         d01 猜数字游戏
+    ├── d02_score_statistics.c     d02 成绩统计器
     ├── d03_pattern.c              d03 打印直角三角形
     ├── d04_calculator.c           d04 简易计算器（switch + 边界检查）
     └── sum.c                      复习小程序：两数之和
