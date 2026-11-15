@@ -14,6 +14,11 @@ printf("I have picked a number between 1 and 100,can you guess it?\n");
 while(1)
 {
 printf(" you guess : "); scanf("%d",&num);
+if(num==0)
+{
+printf("bye \n");
+break;                  /* 输入 0 直接退出 */
+}
 times++;
 if(num>fixed_num)
 {
@@ -23,7 +28,7 @@ else if(num<fixed_num)
 {
 printf("too small \n");
 }
-else if(num==fixed_num)
+else
 {
 printf("you are right!,you have guessed %d times\n",times);
 break;
